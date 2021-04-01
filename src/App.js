@@ -8,6 +8,7 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	// const [showResult, setShowResult] = useState(false);
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -40,17 +41,52 @@ export default function App() {
 		Event.preventDefault(Event);
    		console.log(Event.target.name.value);
    		console.log(Event.target.email.value);
+
 	};
+
+	// const showResult = () => {
+	// 	if(showScore) {
+
+	// 	}
+	// }
+
+	// const handleOnSubmit = (Event) => {
+	// 	Event.preventDefault(Event)
+	
+	// 	const input = {
+	// 		name: Event.target.itemName.value,
+	// 		price: Event.target.itemPrice.value,
+	// 		description: Event.target.itemDescription.value, 
+	// 		userEmail: this.props.currentUser.email
+	// 	}
+	
+	// 	this.props.dispatch(saveItem(input))
+	
+	// 	Event.target.itemName.value = ''
+	// 	Event.target.itemPrice.value = ''
+	// 	Event.target.itemDescription.value = ''
+	
+	// 	this.handleCloseModal();
+	// 
+
+	// showScore vai mostar um card com um botao para ser feito o cadastro
+	// esse botao abre o modal e já exibe a pontuação
 
 
 
 	return (
 		<div className='app'>
 			{showScore ? (
-				<div className='score-section'>
-					You scored {score} out of 48
-					<button className='playAgain-button' onClick={playAgain}>Jogar novamente</button>
-					<Container triggerText={popupButtonText} onSubmit={onSubmitForm} />
+				<div>
+					<div className='show-result'>
+						<Container triggerText={popupButtonText} onSubmit={onSubmitForm} />
+					</div>
+					
+					<div className='score-section'>
+						You scored {score} out of 48
+						<button className='playAgain-button' onClick={playAgain}>Jogar novamente</button>
+					</div>
+					
 				</div>
 			) : (
 				<>
