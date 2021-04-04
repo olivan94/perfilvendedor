@@ -8,6 +8,7 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	const [showModal, setShowModal] = useState(true)
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -36,11 +37,14 @@ export default function App() {
 
 	const popupButtonText = "Ver resultado";
 
-	const onSubmitForm = (Event) => {
+	const onSubmitForm = (Event, state) => {
 		Event.preventDefault(Event);
    		console.log(Event.target.name.value);
    		console.log(Event.target.email.value);
+		setShowModal(state);
+		console.log(showModal);
 	};
+
 
 
 
@@ -50,7 +54,7 @@ export default function App() {
 				<div className='score-section'>
 					You scored {score} out of 48
 					<button className='playAgain-button' onClick={playAgain}>Jogar novamente</button>
-					<Container triggerText={popupButtonText} onSubmit={onSubmitForm} />
+					<Container triggerText={popupButtonText} onSubmitForm={onSubmitForm} />
 				</div>
 			) : (
 				<>

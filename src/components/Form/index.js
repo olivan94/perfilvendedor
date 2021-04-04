@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export const Form = ({ onSubmit }) => {
+class Form extends Component {
+
+
+  render () {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={this.props.onSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input className="form-control" id="name" />
@@ -23,5 +26,6 @@ export const Form = ({ onSubmit }) => {
       </div>
     </form>
   );
+  }
 };
 export default Form;

@@ -18,6 +18,7 @@ export class Container extends Component {
         this.setState({ isShown: false });
         this.TriggerButton.focus();
         this.toggleScrollLock();
+        this.props.onSubmitForm(this.state);
     };
 
     onKeyDown = (Event) => {
@@ -45,7 +46,7 @@ export class Container extends Component {
                 /> 
                 {this.state.isShown ? (
                     <Modal
-                        onSubmit={this.props.onSubmit}
+                        onSubmit={this.props.onSubmitForm}
                         modalRef={(n) => (this.modal = n)}
                         buttonRef={(n) => (this.closeButton = n)} 
                         closeModal={this.closeModal}

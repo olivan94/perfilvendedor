@@ -43,7 +43,7 @@ const questions = [
 		questionText: 'Resolução de problemas',
 		answerOptions: [
 			{ answerText: 'Exelente', answerValue: 4, answerId:'04-4' },
-			{ answerText: 'Muito bom4', answerValue: 3, answerId:'04-3' },
+			{ answerText: 'Muito bom', answerValue: 3, answerId:'04-3' },
 			{ answerText: 'Bom', answerValue: 2, answerId:'04-2' },
 			{ answerText: 'Intermediário', answerValue: 1, answerId:'04-1' },
 		],
@@ -73,7 +73,7 @@ const questions = [
 		questionText: 'Técnicas de negocição',
 		answerOptions: [
 			{ answerText: 'Exelente', answerValue: 4, answerId:'07-4' },
-			{ answerText: 'Muito bom4', answerValue: 3, answerId:'07-3' },
+			{ answerText: 'Muito bom', answerValue: 3, answerId:'07-3' },
 			{ answerText: 'Bom', answerValue: 2, answerId:'07-2' },
 			{ answerText: 'Intermediário', answerValue: 1, answerId:'07-1' },
 		],
