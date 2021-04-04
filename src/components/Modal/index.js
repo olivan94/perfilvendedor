@@ -12,24 +12,6 @@ export const Modal = ({
     onSubmit
 }) => {
 
-    // const handleOnSubmit = (Event) => {
-	// 	Event.preventDefault(Event)
-	
-	// 	const input = {
-	// 		name: Event.target.itemName.value,
-	// 		price: Event.target.itemPrice.value,
-	// 		description: Event.target.itemDescription.value, 
-	// 		userEmail: this.props.currentUser.email
-	// 	}
-	
-	// 	this.props.dispatch(saveItem(input))
-	
-	// 	Event.target.itemName.value = ''
-	// 	Event.target.itemPrice.value = ''
-	// 	Event.target.itemDescription.value = ''
-	
-	// 	this.handleCloseModal();
-    // }
     
 
     return ReactDOM.createPortal(

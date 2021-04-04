@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import questions from './questions';
-import Container from './components/Container'
+import { Modal } from './components/Modal';
+import TriggerButton from './components/TriggerButton';
 
 export default function App() {
 
@@ -8,7 +9,7 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-	// const [showResult, setShowResult] = useState(false);
+	const [isShown, setIsShown] = useState(false)
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -26,16 +27,61 @@ export default function App() {
 	const playAgain = () => {
 
     	if (currentQuestion >= 11) {
-    	  setScore(0);    
-    	  setCurrentQuestion(0);
-		  setShowScore(false);
+			setScore(0);    
+			setCurrentQuestion(0);
+			setShowScore(false);
     	} else {
-    	  console.log('erro')
+    	  	console.log('erro')
     	}
 
 	};
 
-	const popupButtonText = "Ver resultado";
+
+
+	
+    const showModal = () => {
+        setIsShown(true);
+        // this.closeButton.focus();
+        toggleScrollLock();
+    };
+
+    const closeModal = () => {
+        setIsShown(false);
+        // TriggerButton.focus();
+        toggleScrollLock();
+    };
+
+    const onKeyDown = (Event) => {
+        if (Event.keyCode === 27) {
+          closeModal();
+        }
+    };
+
+    const onClickOutside = (Event) => {
+        if (Modal && Modal.contains(Event.target)) return;
+        closeModal();
+    };
+
+	const toggleScrollLock = () => {
+        document.querySelector('html').classList.toggle('scroll-lock');
+    };
+
+    
+
+
+	// const modalRef = (n) => {
+	// 	target.value = n;
+	// } 
+
+	// const buttonRef = (n) => {
+	// 	target.value = n;
+	// }
+
+	// const closeButtonRef = (n) => {
+	// 	target.value = n
+	// }
+
+	const triggerText = "Ver resultado";
 
 	const onSubmitForm = (Event) => {
 		Event.preventDefault(Event);
@@ -44,43 +90,27 @@ export default function App() {
 
 	};
 
-	// const showResult = () => {
-	// 	if(showScore) {
-
-	// 	}
-	// }
-
-	// const handleOnSubmit = (Event) => {
-	// 	Event.preventDefault(Event)
-	
-	// 	const input = {
-	// 		name: Event.target.itemName.value,
-	// 		price: Event.target.itemPrice.value,
-	// 		description: Event.target.itemDescription.value, 
-	// 		userEmail: this.props.currentUser.email
-	// 	}
-	
-	// 	this.props.dispatch(saveItem(input))
-	
-	// 	Event.target.itemName.value = ''
-	// 	Event.target.itemPrice.value = ''
-	// 	Event.target.itemDescription.value = ''
-	
-	// 	this.handleCloseModal();
-	// 
-
-	// showScore vai mostar um card com um botao para ser feito o cadastro
-	// esse botao abre o modal e já exibe a pontuação
-
-
 
 	return (
 		<div className='app'>
 			{showScore ? (
 				<div>
-					<div className='show-result'>
-						<Container triggerText={popupButtonText} onSubmit={onSubmitForm} />
-					</div>
+					<React.Fragment>
+                		<TriggerButton 
+                    		triggerText={triggerText}
+                    		showModal={showModal}
+                    		// buttonRef={buttonRef}
+                		/> 
+                		{isShown ? (
+                    	<Modal
+                        	onSubmit={onSubmitForm}
+                        	// modalRef={modalRef}
+                        	// buttonRef={closeButtonRef} 
+							closeModal={closeModal}
+							onKeyDown={onKeyDown}
+                        	onClickOutside={onClickOutside}
+                   		/>) : null}
+					</React.Fragment>
 					
 					<div className='score-section'>
 						You scored {score} out of 48

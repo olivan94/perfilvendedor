@@ -24,7 +24,7 @@ export class Container extends Component {
 
     onKeyDown = (Event) => {
         if (Event.keyCode === 27) {
-          this.closeModal();
+            this.closeModal();
         }
     };
 
@@ -36,45 +36,6 @@ export class Container extends Component {
     toggleScrollLock = () => {
         document.querySelector('html').classList.toggle('scroll-lock');
     };
-
-    // handleSubmit = (Event) => {
-
-    //     Event.preventDefault();
-    //     axios({
-    //       method: "POST", 
-    //       url:"http://localhost:3000", 
-    //       data:  this.state
-    //     }).then((response)=>{
-    //       if (response.data.status === 'success'){
-    //         alert("Message Sent."); 
-    //         this.resetForm()
-    //       }else if(response.data.status === 'fail'){
-    //         alert("Message failed to send.")
-    //       }
-    //     })
-
-
-
-    //     Event.preventDefault();
-    //     this.closeModal(); 
-    // }
-
-    // resetForm(){
-    //     this.setState({name: '', email: ''})
-    // }
-
-    // TextFile = () => {
-    //     const element = document.createElement("a");
-    //     const file = new Blob([document.getElementById('myInput').value], {type: 'text/plain'});
-    //     element.href = URL.createObjectURL(file);
-    //     element.download = "myFile.txt";
-    //     document.body.appendChild(element);
-    //     element.click();
-    // }
-
-    // onChange(event) {
-    //     this.setState({[event.target.id]: event.target.value})
-    // }
     
     render() {
         return (
