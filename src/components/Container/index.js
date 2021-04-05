@@ -18,7 +18,6 @@ export class Container extends Component {
         this.setState({ isShown: false });
         this.TriggerButton.focus();
         this.toggleScrollLock();
-        this.props.onSubmitForm(this.state);
     };
 
     onKeyDown = (Event) => {
@@ -30,11 +29,19 @@ export class Container extends Component {
     onClickOutside = (Event) => {
         if (this.modal && this.modal.contains(Event.target)) return;
         this.closeModal();
+        console.log('fechei');
     };
 
     toggleScrollLock = () => {
         document.querySelector('html').classList.toggle('scroll-lock');
     };
+
+    shouldClose = () => {
+        if(this.props.shouldClose === false){
+            this.closeModal();
+            console.log('falso mesmo')
+        } else { console.log('verdade');}
+    }
     
     render() {
         return (
@@ -46,12 +53,14 @@ export class Container extends Component {
                 /> 
                 {this.state.isShown ? (
                     <Modal
-                        onSubmit={this.props.onSubmitForm}
+                        onSubmit={this.props.onSubmit}
                         modalRef={(n) => (this.modal = n)}
                         buttonRef={(n) => (this.closeButton = n)} 
                         closeModal={this.closeModal}
                         onKeyDown={this.onKeyDown}
                         onClickOutside={this.onClickOutside}
+                        shouldClose={this.shouldClose.bind(this)}
+
                     />
                 ) : null}
             </React.Fragment>
