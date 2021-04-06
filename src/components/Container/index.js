@@ -1,81 +1,96 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../Modal';
 import TriggerButton from '../TriggerButton';
+import PropTypes from "prop-types";
 
 
-export class Container extends Component {
+const Container =({
+    isOpen,
+    handleClose,
+    triggerText,
+    onSubmit,
+    valor,
+    onClick
+}) => {
 
-    state = { isShown: false, isMostrado: true, isResult: false, isFechar: this.props.fecharModal};
+    const [isShown, setIsShown] = useState(false);
+    const [isMostrado, setIsMostrado] = useState(true);
+    const [isResult, setIsResult] = useState(false);
 
-    showModal = () => {
-        this.setState({ isShown: true }, () => {
-            this.closeButton.focus();
-            this.toggleScrollLock();
-            this.setState({isMostrado: false})
-        });
+
+    function showModal() {
+        setIsShown(true);
+        setIsMostrado(false);
     };
 
-    closeModal = () => {
-        this.setState({ isShown: false });
-        // this.TriggerButton.focus();
-        this.toggleScrollLock();
-        this.setState({isResult: true})
+    function closeModal() {
+        handleClose();
+        setIsShown(false);
+        setIsResult(true);
     };
 
-    onKeyDown = (Event) => {
+    function onKeyDown(Event) {
         if (Event.keyCode === 27) {
-          this.closeModal();
+          closeModal();
         }
     };
 
-    onClickOutside = (Event) => {
-        if (this.modal && this.modal.contains(Event.target)) return;
-        this.closeModal();
-        console.log('fechei');
-    };
+    // function onClickOutside(Event) {
+    //     if (this.modal && this.modal.contains(Event.target)) return;
+    //     closeModal();
+    // };
 
-    toggleScrollLock = () => {
-        document.querySelector('html').classList.toggle('scroll-lock');
-    };
+    // function toggleScrollLock() {
+    //     document.querySelector('html').classList.toggle('scroll-lock');
+    // };
 
     
-    render() {
+    
         return (
             <React.Fragment>
 
-                {this.state.isMostrado ? (
+                {isMostrado ? (
                 <TriggerButton 
-                    triggerText={this.props.triggerText}
-                    showModal={this.showModal}
-                    buttonRef={(n) => (this.TriggerButton = n)}
+                    triggerText={triggerText}
+                    showModal={showModal}
+                    buttonRef={(n) => (TriggerButton = n)}
                 />) : (null)}                
 
 
                  
-                {this.state.isShown ? (
+                {isShown ? (
                     <Modal
-                        isOpen={this.state.isFechar}
-                        onSubmit={this.props.onSubmit}
-                        modalRef={(n) => (this.modal = n)}
-                        buttonRef={(n) => (this.closeButton = n)} 
-                        closeModal={this.closeModal}
-                        onKeyDown={this.onKeyDown}
-                        onClickOutside={this.onClickOutside}
+                        isOpen={isOpen} //tentar jogar isso no notao acima
+                        onSubmit={onSubmit}
+                        closeModal={closeModal}
+                        onKeyDown={onKeyDown}
+                        // onClickOutside={onClickOutside}
                         // shouldClose={this.shouldClose.bind(this)}
 
                     />
                 ) : (null)}
 
 
-                {this.state.isResult && !this.state.isShown && !this.state.isMostrado && this.props.fecharModal ? (
+                {isResult && !isShown && !isMostrado ? (
                     <div className='score-section'>
-                        {console.log(this.state.isMostrado)}
-                        You scored {this.props.valor} out of 48
-                        <button className='playAgain-button' onClick={this.props.onClick}>Jogar novamente</button>
+                        {console.log(isMostrado)}
+                        You scored {valor} out of 48
+                        <button className='playAgain-button' onClick={onClick}>Jogar novamente</button>
                     </div>
                 ):(null)}
             </React.Fragment>
         );
-    }
+    
 }
+
+Container.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    triggerText: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    valor: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired
+
+};
+
 export default Container;
