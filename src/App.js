@@ -2,6 +2,63 @@ import React, { useState } from 'react';
 import questions from './questions';
 import Container from './components/Container'
 
+
+
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { 
+			currentQuestion: true,
+			showScore: true,
+			score: 0,			
+		}
+	}
+
+	handleAnswerOptionClick = (answerValue) => {
+		if (answerValue) {
+			setScore(score + answerValue);
+		}
+
+		const nextQuestion = currentQuestion + 1;
+		if (nextQuestion < questions.length) {
+			setCurrentQuestion(nextQuestion);
+		} else {
+			setShowScore(true);
+		}
+	};
+
+	playAgain = () => {
+
+    	if (currentQuestion >= 11) {
+    	  setScore(0);    
+    	  setCurrentQuestion(0);
+		  setShowScore(false);
+		  setFecharModal(false);
+    	} else {
+    	  console.log('erro')
+    	}
+
+	};
+
+	popupButtonText = "Ver resultado";
+
+
+
+
+	render() { 
+		return (  );
+	}
+}
+ 
+export default App;
+
+
+
+
+
+
+
+
 export default function App() {
 
 
@@ -47,24 +104,7 @@ export default function App() {
    		console.log(Event.target.email.value);
 
 		console.log(fecharModal);
-
-
-		// if (onSubmitForm.Event===true) {
-		// 	teste = fecharModal;
-		// 	console.log(teste);
-		// 	return teste;
-			
-		// }
-		// let valor = isShown;
-		
-		// if (isShown === false) {
-			
-		// 	console.log(isShown);
-		// 	return isShown;
-		// } else {
-		// 	return console.log(isShown);
-		// }
-	};
+	}
 
 	let valor = score;
 
@@ -74,31 +114,6 @@ export default function App() {
 		setFecharModal(true);
 		return console.log(fecharModal);
 	};
-
-	// let setaGatilho = (showScore) => {
-	// 	if(showScore === true) {
-	// 		setGatilho(1);
-	// 	} else {
-	// 		setGatilho(0);
-	// 	}
-	// };
-
-
-
-	// showModal = (isShown) => {
-	// 	setIsShown(true)
-    //     this.setState({ isShown: true }, () => {
-    //         this.closeButton.focus();
-    //         this.toggleScrollLock();
-    //     });
-    // };
-
-	// const shouldClose = (isShown) => {
-	// 	if(isShown === true){
-	// 		return console.log(shouldClose.value);
-	// 		console.log(shouldClose)
-	// 	}
-	// };
 
 
 
