@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from '../Modal';
+import  MyModal  from '../Modal';
 import TriggerButton from '../TriggerButton';
 import PropTypes from "prop-types";
 
@@ -59,7 +59,7 @@ const Container =({
 
                  
                 {isShown ? (
-                    <Modal
+                    <MyModal
                         isOpen={isOpen} //tentar jogar isso no notao acima
                         onSubmit={onSubmit}
                         closeModal={closeModal}
