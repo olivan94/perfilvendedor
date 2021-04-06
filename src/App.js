@@ -8,8 +8,9 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	const [fecharModal,setFecharModal] = useState(false);
 
-	const [isShown, setIsShown] = useState(false);
+	// const [isShown, setIsShown] = useState(false);
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -21,7 +22,6 @@ export default function App() {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
-			setIsShown(true);
 		}
 	};
 
@@ -31,7 +31,7 @@ export default function App() {
     	  setScore(0);    
     	  setCurrentQuestion(0);
 		  setShowScore(false);
-		  setIsShown(false);
+		  setFecharModal(false);
     	} else {
     	  console.log('erro')
     	}
@@ -40,26 +40,58 @@ export default function App() {
 
 	const popupButtonText = "Ver resultado";
 
-	const onSubmitForm = (Event, isShown) => {
+	const onSubmitForm = (Event) => {
+		setFecharModal(true);
 		Event.preventDefault();
    		console.log(Event.target.name.value);
    		console.log(Event.target.email.value);
 
+		console.log(fecharModal);
+
+
+		// if (onSubmitForm.Event===true) {
+		// 	teste = fecharModal;
+		// 	console.log(teste);
+		// 	return teste;
+			
+		// }
 		// let valor = isShown;
 		
-		if (isShown === false) {
+		// if (isShown === false) {
 			
-			console.log(isShown);
-			return isShown;
-		} else {
-			return console.log(isShown);
-		}
-
-		
-
+		// 	console.log(isShown);
+		// 	return isShown;
+		// } else {
+		// 	return console.log(isShown);
+		// }
 	};
 
-	let valor = isShown;
+	let valor = score;
+
+	let valorModal = fecharModal;
+
+	function valormod(){
+		setFecharModal(true);
+		return console.log(fecharModal);
+	};
+
+	// let setaGatilho = (showScore) => {
+	// 	if(showScore === true) {
+	// 		setGatilho(1);
+	// 	} else {
+	// 		setGatilho(0);
+	// 	}
+	// };
+
+
+
+	// showModal = (isShown) => {
+	// 	setIsShown(true)
+    //     this.setState({ isShown: true }, () => {
+    //         this.closeButton.focus();
+    //         this.toggleScrollLock();
+    //     });
+    // };
 
 	// const shouldClose = (isShown) => {
 	// 	if(isShown === true){
@@ -75,14 +107,10 @@ export default function App() {
 		<div className='app'>
 			{showScore ? (
 				<div className='score-section'>
-					<Container triggerText={popupButtonText} onSubmit={onSubmitForm} shouldClose={valor}/>			
+					<Container triggerText={popupButtonText} onSubmit={onSubmitForm} onClick={playAgain} valor={valor} fecharModal={valorModal} />
 				</div>
-			) : isShown ? (
-				<div className='score-section'>
-					You scored {score} out of 48
-					<button className='playAgain-button' onClick={playAgain}>Jogar novamente</button>
-				</div>
-			):(
+				
+			) : (
 				<>
 					{console.log('to aqui')}
 					<div className='question-section'>
