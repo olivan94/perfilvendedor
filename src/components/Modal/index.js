@@ -9,7 +9,8 @@ export const MyModal = ({
     // onClickOutside,
     onKeyDown,
     closeModal,
-    onSubmit
+    onSubmit,
+    // toggle
 }) => {
 
     return ReactDOM.createPortal(
@@ -53,7 +54,9 @@ MyModal.propTypes = {
     // buttonRef: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
-  };
+    onSubmit: PropTypes.func.isRequired,
+    toggle: PropTypes.func.isRequired,
+    handleClose: PropTypes.func.isRequired,
+};
 
 export default MyModal;

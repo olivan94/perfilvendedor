@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 
-class Form extends Component {
+const Form = ({
+  handleClose,
+  onSubmit
+}) => {
 
   // constructor(props){
   //   super(props);
@@ -31,9 +35,9 @@ class Form extends Component {
   //   this.props
   // }
 
-  render () {
+  
   return (
-    <form onSubmit={this.props.onSubmit}>
+    <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input className="form-control" id="name"
@@ -51,12 +55,19 @@ class Form extends Component {
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit" >
+        <button className="form-control btn btn-primary" type="submit" toggle={handleClose} >
           Submit
         </button>
       </div>
     </form>
   );
-  }
+  
 };
+
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
+
 export default Form;

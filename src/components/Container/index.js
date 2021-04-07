@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import  MyModal  from '../Modal';
-import TriggerButton from '../TriggerButton';
+// import TriggerButton from '../TriggerButton';
 import PropTypes from "prop-types";
 
 
@@ -10,12 +10,15 @@ const Container =({
     triggerText,
     onSubmit,
     valor,
-    onClick
+    deNovoOnClick,
+    // toggle
 }) => {
 
     const [isShown, setIsShown] = useState(false);
     const [isMostrado, setIsMostrado] = useState(true);
     const [isResult, setIsResult] = useState(false);
+
+    // const toggle = () => setIsShown(!isShown);
 
 
     function showModal() {
@@ -44,17 +47,14 @@ const Container =({
     //     document.querySelector('html').classList.toggle('scroll-lock');
     // };
 
+
     
     
         return (
             <React.Fragment>
 
                 {isMostrado ? (
-                <TriggerButton 
-                    triggerText={triggerText}
-                    showModal={showModal}
-                    buttonRef={(n) => (TriggerButton = n)}
-                />) : (null)}                
+                <button className="btn btn-lg btn-danger center modal-button"  onClick={showModal}> {triggerText} </button>) : (null)}                
 
 
                  
@@ -64,6 +64,7 @@ const Container =({
                         onSubmit={onSubmit}
                         closeModal={closeModal}
                         onKeyDown={onKeyDown}
+                        // toggle={toggle}
                         // onClickOutside={onClickOutside}
                         // shouldClose={this.shouldClose.bind(this)}
 
@@ -75,7 +76,7 @@ const Container =({
                     <div className='score-section'>
                         {console.log(isMostrado)}
                         You scored {valor} out of 48
-                        <button className='playAgain-button' onClick={onClick}>Jogar novamente</button>
+                        <button className='playAgain-button' onClick={deNovoOnClick}>Jogar novamente</button>
                     </div>
                 ):(null)}
             </React.Fragment>
@@ -89,7 +90,8 @@ Container.propTypes = {
     triggerText: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
     valor: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired
+    deNovoOnClick: PropTypes.func.isRequired
+    // toggle: PropTypes.func.isRequired
 
 };
 
