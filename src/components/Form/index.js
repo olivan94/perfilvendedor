@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 const Form = ({
-  handleClose,
-  onSubmit
+  // handleClose,
+  onSubmit,
+  // handleClose,
+  handleChange
 }) => {
 
   // constructor(props){
@@ -13,13 +15,13 @@ const Form = ({
   //   this.state = {isMostrar: false};
   // }
 
-  // handleNome(evento){
-  //   evento.stopPropagation();
+  // const handleNome = (Event) => {
+  //   Event.stopPropagation();
   //   this.nome = evento.target.value;
   // }
 
-  // handleEmail(evento){
-  //   evento.stopPropagation();
+  // const handleEmail = (Event) => {
+  //   Event.stopPropagation();
   //   this.email = evento.target.value;
   // }
 
@@ -35,13 +37,41 @@ const Form = ({
   //   this.props
   // }
 
+  // const [cliente, setCliente] = useState({
+  //   name: "",
+  //   email: "",
+  // });
+
+  // let handleChange = (e) => {
+  //   let name = e.target.id;
+  //   let value = e.target.value;
+  //   cliente[name] = value;
+  //   setCliente(cliente);
+  // }
+
+  // let save = (e) => {
+  //   e.preventDefault();
+  //   console.log(cliente);
+  // }
+
+
+
+  // const handleSubmit = (Event) => {
+  //   Event.preventDefault();
+  //   console.log(Event.target.name.value);
+  //   console.log(Event.target.email.value);
+    
+
+  //   alert('You have submitted the form.')
+  // }
+
   
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input className="form-control" id="name"
-        //  onChange={this.handleNome.bind(this)} 
+        onChange={handleChange} 
         />
       </div>
       <div className="form-group">
@@ -51,11 +81,11 @@ const Form = ({
           className="form-control"
           id="email"
           placeholder="name@example.com"
-          // onChange={this.handleEmail.bind(this)}
+          onChange={handleChange}
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit" toggle={handleClose} >
+        <button className="form-control btn btn-primary" type="submit">
           Submit
         </button>
       </div>
@@ -67,7 +97,9 @@ const Form = ({
 
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+  // closeModal: PropTypes.func.isRequired,
+  // handleClose: PropTypes.func.isRequired
 };
 
 export default Form;

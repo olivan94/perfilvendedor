@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from '../Form';
-// import FocusTrap from 'focus-trap-react';
-import { Modal } from "reactstrap";
+import FocusTrap from 'focus-trap-react';
+// import { Modal } from "reactstrap";
 import PropTypes from "prop-types";
 
 export const MyModal = ({
@@ -10,13 +10,25 @@ export const MyModal = ({
     onKeyDown,
     closeModal,
     onSubmit,
+    // handleClose,
+    handleChange
     // toggle
 }) => {
 
+
     return ReactDOM.createPortal(
-        
-            
-                <Modal className="modal-area" onKeyDown={onKeyDown}>
+        <FocusTrap>
+            <aside
+                tag="aside"
+                role="dialog"
+                tabIndex="-1"
+                aria-modal="true"
+                className="modal-cover"
+                // onClick={onClickOutside}
+                onKeyDown={onKeyDown}
+            >
+                    
+                <div className="modal-area" >
                     <button
                         aria-label="Close Modal" 
                         aria-labelledby="close-modal"
@@ -31,10 +43,11 @@ export const MyModal = ({
                         </svg>
                     </button>
                     <div className="modal-body">
-                        <Form onSubmit={onSubmit} />
+                        <Form onSubmit={onSubmit} handleChange={handleChange}/>
                     </div>
-                </Modal>
-        ,
+                </div>
+            </aside>
+        </FocusTrap>,
         document.body
     );
 };
@@ -43,26 +56,12 @@ MyModal.propTypes = {
     // onClickOutside: PropTypes.func.isRequired,
     // modalRef: PropTypes.func.isRequired,
     // buttonRef: PropTypes.func.isRequired,
+    // toggle: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    toggle: PropTypes.func.isRequired,
-    handleClose: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,   
+    // handleClose: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired
 };
 
 export default MyModal;
-
-
-
-{/* <aside
-                tag="aside"
-                role="dialog"
-                tabIndex="-1"
-                aria-modal="true"
-                className="modal-cover"
-                // onClick={onClickOutside}
-                onKeyDown={onKeyDown}
-            ></aside>
-            </aside> 
-        <FocusTrap></FocusTrap>
-    */}

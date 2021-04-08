@@ -5,20 +5,16 @@ import PropTypes from "prop-types";
 
 
 const Container =({
-    isOpen,
-    handleClose,
     triggerText,
     onSubmit,
     valor,
     deNovoOnClick,
-    // toggle
+    onHandleChange
 }) => {
 
     const [isShown, setIsShown] = useState(false);
     const [isMostrado, setIsMostrado] = useState(true);
     const [isResult, setIsResult] = useState(false);
-
-    // const toggle = () => setIsShown(!isShown);
 
 
     function showModal() {
@@ -27,7 +23,6 @@ const Container =({
     };
 
     function closeModal() {
-        handleClose();
         setIsShown(false);
         setIsResult(true);
     };
@@ -60,14 +55,11 @@ const Container =({
                  
                 {isShown ? (
                     <MyModal
-                        isOpen={isOpen} //tentar jogar isso no notao acima
                         onSubmit={onSubmit}
                         closeModal={closeModal}
                         onKeyDown={onKeyDown}
-                        // toggle={toggle}
-                        // onClickOutside={onClickOutside}
-                        // shouldClose={this.shouldClose.bind(this)}
-
+                        // handleClose={() => setShowExcelDataModalIsOpen(false)}
+                        handleChange={onHandleChange}
                     />
                 ) : (null)}
 
@@ -85,13 +77,12 @@ const Container =({
 }
 
 Container.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired,
+    
     triggerText: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
     valor: PropTypes.number.isRequired,
-    deNovoOnClick: PropTypes.func.isRequired
-    // toggle: PropTypes.func.isRequired
+    deNovoOnClick: PropTypes.func.isRequired,
+    onHandleChange: PropTypes.func.isRequired
 
 };
 
