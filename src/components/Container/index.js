@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 
 const Container =({
     triggerText,
-    onSubmit,
     valor,
     deNovoOnClick,
-    onHandleChange
+    addClientLog,
+    fecharModal
 }) => {
 
     const [isShown, setIsShown] = useState(false);
@@ -25,6 +25,9 @@ const Container =({
     function closeModal() {
         setIsShown(false);
         setIsResult(true);
+        if(fecharModal === true){
+            setIsShown(false)
+        }
     };
 
     function onKeyDown(Event) {
@@ -32,6 +35,7 @@ const Container =({
           closeModal();
         }
     };
+
 
     // function onClickOutside(Event) {
     //     if (this.modal && this.modal.contains(Event.target)) return;
@@ -55,11 +59,9 @@ const Container =({
                  
                 {isShown ? (
                     <MyModal
-                        onSubmit={onSubmit}
                         closeModal={closeModal}
                         onKeyDown={onKeyDown}
-                        // handleClose={() => setShowExcelDataModalIsOpen(false)}
-                        handleChange={onHandleChange}
+                        addClientLog={addClientLog}
                     />
                 ) : (null)}
 
@@ -79,10 +81,10 @@ const Container =({
 Container.propTypes = {
     
     triggerText: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired,
     valor: PropTypes.number.isRequired,
     deNovoOnClick: PropTypes.func.isRequired,
-    onHandleChange: PropTypes.func.isRequired
+    addClientLog: PropTypes.func.isRequired,
+    fecharModal: PropTypes.bool.isRequired,
 
 };
 

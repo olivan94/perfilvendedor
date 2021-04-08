@@ -6,13 +6,9 @@ import FocusTrap from 'focus-trap-react';
 import PropTypes from "prop-types";
 
 export const MyModal = ({
-    // onClickOutside,
     onKeyDown,
     closeModal,
-    onSubmit,
-    // handleClose,
-    handleChange
-    // toggle
+    addClientLog
 }) => {
 
 
@@ -43,7 +39,7 @@ export const MyModal = ({
                         </svg>
                     </button>
                     <div className="modal-body">
-                        <Form onSubmit={onSubmit} handleChange={handleChange}/>
+                        <Form addClientLog={addClientLog} closeModal={closeModal}/>
                     </div>
                 </div>
             </aside>
@@ -53,15 +49,9 @@ export const MyModal = ({
 };
 
 MyModal.propTypes = {
-    // onClickOutside: PropTypes.func.isRequired,
-    // modalRef: PropTypes.func.isRequired,
-    // buttonRef: PropTypes.func.isRequired,
-    // toggle: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,   
-    // handleClose: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired
+    addClientLog: PropTypes.func.isRequired
 };
 
 export default MyModal;

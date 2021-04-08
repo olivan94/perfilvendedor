@@ -7,10 +7,8 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-	const [cliente, setCliente] = useState({
-		name: "",
-		email: "",
-	});
+	const [cliente, setCliente] = useState([]);
+	const [fecharModal, setFecharModal] = useState(false)
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -26,6 +24,8 @@ export default function App() {
 	};
 
 	const playAgain = () => {
+		
+		console.log(cliente);
 
     	if (currentQuestion >= 11) {
     	  setScore(0);    
@@ -42,18 +42,18 @@ export default function App() {
 	let valor = score;
 
 	//lidando com o form
-	
-	let handleChange = (e) => {
-		let name = e.target.id;
-		let value = e.target.value;
-		cliente[name] = value;
-		setCliente(cliente);
+
+	const addClientLog = (log) => {
+		let logs = [...cliente, log];
+		setCliente(logs);
+		
+		if(setCliente.done) {
+			setFecharModal(true);
+		}
 	}
+
 	
-	let save = (e) => {
-		e.preventDefault();
-		console.log(cliente);
-	}
+
 
 	
 	return (
@@ -62,10 +62,10 @@ export default function App() {
 				<div className='score-section'>
 					<Container 
 						triggerText={popupButtonText} 
-						onSubmit={save} 
 						deNovoOnClick={playAgain} 
 						valor={valor}
-						onHandleChange={handleChange}
+						addClientLog={addClientLog}
+						fecharModal={fecharModal}
 					/>
 				</div>
 				

@@ -1,77 +1,42 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
-const Form = ({
-  // handleClose,
-  onSubmit,
-  // handleClose,
-  handleChange
-}) => {
+const Form = ({addClientLog, closeModal}) => {
 
-  // constructor(props){
-  //   super(props);
-  //   this.nome = '';
-  //   this.email = '';
-  //   this.state = {isMostrar: false};
-  // }
+  const[name, setName] = useState("")
+  const[email, setEmail] = useState("")
+  const[fecharModal, setFecharModal] = useState(false)
 
-  // const handleNome = (Event) => {
-  //   Event.stopPropagation();
-  //   this.nome = evento.target.value;
-  // }
+  let handleNameChange = (e) => {
+		setName(e.target.value)
+	}
+	
+	let handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
 
-  // const handleEmail = (Event) => {
-  //   Event.stopPropagation();
-  //   this.email = evento.target.value;
-  // }
+  let handleSubmit = (e) => {
+    addClientLog([name, email])
+    e.preventDefault();
+  }
 
-  // criarCandidato(evento){
-  //   evento.preventDefault();
-  //   evento.stopPropagation();
-  //   this.props.criarNota(this.titulo, this.texto);
-    
-  // }
+  let handleClose = (e) => {
+    e.target = setFecharModal(true)
+    closeModal(fecharModal)
 
-  // handleSubmit(evento){
-  //   evento.preventDefault();
-  //   this.props
-  // }
-
-  // const [cliente, setCliente] = useState({
-  //   name: "",
-  //   email: "",
-  // });
-
-  // let handleChange = (e) => {
-  //   let name = e.target.id;
-  //   let value = e.target.value;
-  //   cliente[name] = value;
-  //   setCliente(cliente);
-  // }
-
-  // let save = (e) => {
-  //   e.preventDefault();
-  //   console.log(cliente);
-  // }
-
-
-
-  // const handleSubmit = (Event) => {
-  //   Event.preventDefault();
-  //   console.log(Event.target.name.value);
-  //   console.log(Event.target.email.value);
-    
-
-  //   alert('You have submitted the form.')
-  // }
+  }
 
   
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={ e => {handleSubmit(e)} }>
       <div className="form-group">
         <label htmlFor="name">Name</label>
-        <input className="form-control" id="name"
-        onChange={handleChange} 
+        <input 
+          type="text"
+          className="form-control"
+          id="name"
+          onChange={handleNameChange}
+          value={name}
         />
       </div>
       <div className="form-group">
@@ -81,11 +46,12 @@ const Form = ({
           className="form-control"
           id="email"
           placeholder="name@example.com"
-          onChange={handleChange}
+          onChange={handleEmailChange}
+          value={email}
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
+        <button className="form-control btn btn-primary" type="submit" onClick={handleClose}>
           Submit
         </button>
       </div>
@@ -96,10 +62,8 @@ const Form = ({
 
 
 Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
-  // closeModal: PropTypes.func.isRequired,
-  // handleClose: PropTypes.func.isRequired
+  addClientLog: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired
 };
 
 export default Form;
