@@ -8,7 +8,6 @@ export default function App() {
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 	const [cliente, setCliente] = useState([]);
-	const [fecharModal, setFecharModal] = useState(false)
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
@@ -46,10 +45,6 @@ export default function App() {
 	const addClientLog = (log) => {
 		let logs = [...cliente, log];
 		setCliente(logs);
-		
-		if(setCliente.done) {
-			setFecharModal(true);
-		}
 	}
 
 	
@@ -65,7 +60,6 @@ export default function App() {
 						deNovoOnClick={playAgain} 
 						valor={valor}
 						addClientLog={addClientLog}
-						fecharModal={fecharModal}
 					/>
 				</div>
 				

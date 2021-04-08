@@ -11,19 +11,28 @@ const Form = ({addClientLog, closeModal}) => {
 		setName(e.target.value)
 	}
 	
-	let handleEmailChange = (e) => {
+	let handleEmailChange = (e) => {    
     setEmail(e.target.value)
   }
 
   let handleSubmit = (e) => {
-    addClientLog([name, email])
-    e.preventDefault();
-  }
 
-  let handleClose = (e) => {
-    e.target = setFecharModal(true)
+    if(name === "" || email === ""){
+      e.preventDefault();
+      return console.log("erro");
+    } else {
+      addClientLog([name, email]);
+      setFecharModal(true);
+      closeModal(fecharModal);
+      e.preventDefault();
+      
+    }
+
+    addClientLog([name, email]);
+    setFecharModal(true);
     closeModal(fecharModal)
 
+    e.preventDefault();
   }
 
   
@@ -51,7 +60,7 @@ const Form = ({addClientLog, closeModal}) => {
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit" onClick={handleClose}>
+        <button className="form-control btn btn-primary" type="submit" >
           Submit
         </button>
       </div>

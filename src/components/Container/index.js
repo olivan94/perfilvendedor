@@ -8,8 +8,7 @@ const Container =({
     triggerText,
     valor,
     deNovoOnClick,
-    addClientLog,
-    fecharModal
+    addClientLog
 }) => {
 
     const [isShown, setIsShown] = useState(false);
@@ -25,9 +24,6 @@ const Container =({
     function closeModal() {
         setIsShown(false);
         setIsResult(true);
-        if(fecharModal === true){
-            setIsShown(false)
-        }
     };
 
     function onKeyDown(Event) {
@@ -35,6 +31,10 @@ const Container =({
           closeModal();
         }
     };
+
+    // function fecharModal() {
+
+    // }
 
 
     // function onClickOutside(Event) {
@@ -83,8 +83,7 @@ Container.propTypes = {
     triggerText: PropTypes.string.isRequired,
     valor: PropTypes.number.isRequired,
     deNovoOnClick: PropTypes.func.isRequired,
-    addClientLog: PropTypes.func.isRequired,
-    fecharModal: PropTypes.bool.isRequired,
+    addClientLog: PropTypes.func.isRequired
 
 };
 
