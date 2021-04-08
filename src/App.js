@@ -62,7 +62,6 @@ export default function App() {
 				
 			) : (
 				<>
-					{console.log(showScore)}
 					<div className='question-section'>
 						<div className='question-count'>
 							<span>Questão {currentQuestion + 1}</span>/{questions.length}
