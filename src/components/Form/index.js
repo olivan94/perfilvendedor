@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
-const Form = ({addClientLog, closeModal}) => {
+const Form = ({addClientLog, closeModal, valor}) => {
 
   const[name, setName] = useState("")
   const[email, setEmail] = useState("")
   const[fecharModal, setFecharModal] = useState(false)
+  // const [score, setScore] = useState(0)
 
   let handleNameChange = (e) => {
 		setName(e.target.value)
 	}
 	
-	let handleEmailChange = (e) => {    
+	let handleEmailChange = (e) => {        
     setEmail(e.target.value)
   }
 
@@ -21,14 +22,14 @@ const Form = ({addClientLog, closeModal}) => {
       e.preventDefault();
       return console.log("erro");
     } else {
-      addClientLog([name, email]);
+      addClientLog([name, email, valor]);
       setFecharModal(true);
       closeModal(fecharModal);
       e.preventDefault();
       
     }
 
-    console.log(name + ", " + email);
+    console.log(name + ", " + email + ", " + valor);
   }
 
   
@@ -56,7 +57,7 @@ const Form = ({addClientLog, closeModal}) => {
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit" >
+        <button className="form-control btn btn-primary" type="submit"  >
           Submit
         </button>
       </div>
@@ -68,7 +69,8 @@ const Form = ({addClientLog, closeModal}) => {
 
 Form.propTypes = {
   addClientLog: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
+  valor: PropTypes.number.isRequired,
 };
 
 export default Form;

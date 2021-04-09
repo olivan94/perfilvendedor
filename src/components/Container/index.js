@@ -64,6 +64,7 @@ const Container =({
                         onKeyDown={onKeyDown}
                         addClientLog={addClientLog}
                         modalReturn={modalReturn}
+                        valor={valor}
                         // onClickOutside={onClickOutside}
                     />
                 ) : (null)}

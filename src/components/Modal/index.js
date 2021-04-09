@@ -9,7 +9,8 @@ export const MyModal = ({
     onKeyDown,
     closeModal,
     addClientLog,
-    modalReturn
+    modalReturn,
+    valor
     // onClickOutside
 }) => {
 
@@ -47,7 +48,7 @@ export const MyModal = ({
                         </svg>
                     </button>
                     <div className="modal-body">
-                        <Form addClientLog={addClientLog} closeModal={closeModal} />
+                        <Form valor={valor} addClientLog={addClientLog} closeModal={closeModal} />
                     </div>
                 </div>
             </aside>
@@ -60,7 +61,8 @@ MyModal.propTypes = {
     onKeyDown: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
     addClientLog: PropTypes.func.isRequired,
-    modalReturn: PropTypes.func.isRequired
+    modalReturn: PropTypes.func.isRequired,
+    valor: PropTypes.number.isRequired,
     // onClickOutside: PropTypes.func.isRequired
 };
 
