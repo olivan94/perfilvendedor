@@ -2,15 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from '../Form';
 import FocusTrap from 'focus-trap-react';
-// import { Modal } from "reactstrap";
 import PropTypes from "prop-types";
+import { useState } from 'react';
 
 export const MyModal = ({
     onKeyDown,
     closeModal,
-    addClientLog
+    addClientLog,
+    modalReturn
+    // onClickOutside
 }) => {
 
+    const[resultado, setResultado] = useState(false);
+
+    function closeButton() {
+        setResultado(true);
+        modalReturn(resultado);
+    }
 
     return ReactDOM.createPortal(
         <FocusTrap>
@@ -20,7 +28,7 @@ export const MyModal = ({
                 tabIndex="-1"
                 aria-modal="true"
                 className="modal-cover"
-                // onClick={onClickOutside}
+                // onClickOutside={onClickOutside}
                 onKeyDown={onKeyDown}
             >
                     
@@ -29,7 +37,7 @@ export const MyModal = ({
                         aria-label="Close Modal" 
                         aria-labelledby="close-modal"
                         className="_modal-close"
-                        onClick={closeModal}
+                        onClick={closeButton}
                     >
                         <span id="close-modal" className="_hide-visual">
                             Close
@@ -39,7 +47,7 @@ export const MyModal = ({
                         </svg>
                     </button>
                     <div className="modal-body">
-                        <Form addClientLog={addClientLog} closeModal={closeModal}/>
+                        <Form addClientLog={addClientLog} closeModal={closeModal} />
                     </div>
                 </div>
             </aside>
@@ -51,7 +59,9 @@ export const MyModal = ({
 MyModal.propTypes = {
     onKeyDown: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
-    addClientLog: PropTypes.func.isRequired
+    addClientLog: PropTypes.func.isRequired,
+    modalReturn: PropTypes.func.isRequired
+    // onClickOutside: PropTypes.func.isRequired
 };
 
 export default MyModal;

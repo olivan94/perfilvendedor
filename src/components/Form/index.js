@@ -28,11 +28,7 @@ const Form = ({addClientLog, closeModal}) => {
       
     }
 
-    addClientLog([name, email]);
-    setFecharModal(true);
-    closeModal(fecharModal)
-
-    e.preventDefault();
+    console.log(name + ", " + email);
   }
 
   

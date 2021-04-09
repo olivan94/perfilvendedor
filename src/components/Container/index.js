@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import  MyModal  from '../Modal';
-// import TriggerButton from '../TriggerButton';
 import PropTypes from "prop-types";
 
 
@@ -26,20 +25,22 @@ const Container =({
         setIsResult(true);
     };
 
+    function modalReturn() {
+        setIsMostrado(true);
+    }
+
     function onKeyDown(Event) {
         if (Event.keyCode === 27) {
           closeModal();
         }
     };
 
-    // function fecharModal() {
-
-    // }
-
 
     // function onClickOutside(Event) {
-    //     if (this.modal && this.modal.contains(Event.target)) return;
-    //     closeModal();
+    //     if (this.modal && this.modal.contains(Event.target)) {
+    //         return closeModal();
+    //     }
+        
     // };
 
     // function toggleScrollLock() {
@@ -57,18 +58,19 @@ const Container =({
 
 
                  
-                {isShown ? (
+                {isShown && !isMostrado ? (
                     <MyModal
                         closeModal={closeModal}
                         onKeyDown={onKeyDown}
                         addClientLog={addClientLog}
+                        modalReturn={modalReturn}
+                        // onClickOutside={onClickOutside}
                     />
                 ) : (null)}
 
 
                 {isResult && !isShown && !isMostrado ? (
                     <div className='score-section'>
-                        {console.log(isMostrado)}
                         You scored {valor} out of 48
                         <button className='playAgain-button' onClick={deNovoOnClick}>Jogar novamente</button>
                     </div>

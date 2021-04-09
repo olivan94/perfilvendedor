@@ -47,6 +47,7 @@ export default function App() {
 		setCliente(logs);
 	}
 
+	console.log(cliente.length);
 	
 	return (
 		<div className='app'>
