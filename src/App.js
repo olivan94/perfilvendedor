@@ -8,10 +8,12 @@ export default function App() {
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 	const [cliente, setCliente] = useState([]);
+	const [respostas, setRespostas] = useState([]);
 
 	const handleAnswerOptionClick = (answerValue) => {
 		if (answerValue) {
 			setScore(score + answerValue);
+			addResposta({valor:answerValue, texto:questions[currentQuestion].questionText});
 		}
 
 		const nextQuestion = currentQuestion + 1;
@@ -25,6 +27,7 @@ export default function App() {
 	const playAgain = () => {
 		
 		console.log(cliente);
+		console.log(respostas);
 
     	if (currentQuestion >= 11) {
     	  setScore(0);    
@@ -40,11 +43,19 @@ export default function App() {
 
 	let valor = score;
 
+	//tentando guardar os dados das respostas em um array
+
+	const addResposta = (log) => {
+		let logs = [...respostas, log];
+		setRespostas(logs)
+	}
+
+
 	//lidando com o form
 
-	const addClientLog = (log) => {
-		let logs = [...cliente, log];
-		setCliente(logs);
+	const addClientLog = (adic) => {
+		let adics = [...cliente, adic];
+		setCliente(adics);
 	}
 
 	console.log(cliente.length);

@@ -22,7 +22,7 @@ const Form = ({addClientLog, closeModal, valor}) => {
       e.preventDefault();
       return console.log("erro");
     } else {
-      addClientLog([name, email, valor]);
+      addClientLog({name:name, email:email, pontuacao:valor});
       setFecharModal(true);
       closeModal(fecharModal);
       e.preventDefault();
