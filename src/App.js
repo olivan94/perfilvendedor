@@ -26,13 +26,14 @@ export default function App() {
 
 	const playAgain = () => {
 		
-		console.log(cliente);
-		console.log(respostas);
+		// console.log(cliente);
+		// console.log(respostas);
 
     	if (currentQuestion >= 11) {
     	  setScore(0);    
     	  setCurrentQuestion(0);
 		  setShowScore(false);
+		  setRespostas([]);
     	} else {
     	  console.log('erro')
     	}
