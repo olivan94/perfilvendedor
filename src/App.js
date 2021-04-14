@@ -42,6 +42,7 @@ export default function App() {
 	const popupButtonText = "Ver resultado";
 
 	let valor = score;
+	let user = cliente;
 
 	//tentando guardar os dados das respostas em um array
 
@@ -69,9 +70,10 @@ export default function App() {
 						deNovoOnClick={playAgain} 
 						valor={valor}
 						addClientLog={addClientLog}
+						addResposta={respostas}
+						user={user}
 					/>
-				</div>
-				
+				</div>				
 			) : (
 				<>
 					<div className='question-section'>

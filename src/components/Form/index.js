@@ -28,8 +28,6 @@ const Form = ({addClientLog, closeModal, valor}) => {
       e.preventDefault();
       
     }
-
-    console.log(name + ", " + email + ", " + valor);
   }
 
   

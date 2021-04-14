@@ -21,7 +21,7 @@ body {
 
 .app {
   background-color: #00e4a1;
-  width: 450px;
+  min-width: 450px;
   min-height: 200px;
   height: min-content;
   border-radius: 15px;
@@ -35,6 +35,21 @@ body {
   display: flex;
   font-size: 24px;
   align-items: center;
+}
+
+.result-div {
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  align-items: center;  
+  justify-content: space-between;
+  width: 900px;
+  height: 900px;
+}
+
+.chart-div {
+  width: 700px;
+  height: 700px;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
