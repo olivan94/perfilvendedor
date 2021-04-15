@@ -43,13 +43,13 @@ body {
   font-size: 24px;
   align-items: center;  
   justify-content: space-between;
-  width: 900px;
-  height: 900px;
+  width: 650px;
+  height: 550px;
 }
 
 .chart-div {
-  width: 700px;
-  height: 700px;
+  width: 500px;
+  height: 500px;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import  MyModal  from '../Modal';
 import PropTypes from "prop-types";
 import {
+    Axis,
     Chart,
     Tooltip,
     Interval,
-    Coord
+    Coordinate
 } from "bizcharts";
 
 
@@ -56,53 +57,90 @@ const Container =({
     //     document.querySelector('html').classList.toggle('scroll-lock');
     // };
 
+    const label = {
+        style: {
+          fill: '#000000',
+          fontSize: 12,
+          fontWeight: 'normal',
+        }
+    }
+
+    const gridii = {
+        line: {
+            type: 'circle',
+            style: {
+                lineWidth: 2,
+            }
+        }
+    }
+
+    const labelii = {
+        style: {
+          fontSize: 0,
+        }
+    }
+
 
     
     
-        return (
-            <React.Fragment>
+    return (
+        <React.Fragment>
 
-                {isMostrado ? (
-                <button className="btn btn-lg btn-danger center modal-button"  onClick={showModal}> {triggerText} </button>) : (null)}                
-
-
-                 
-                {isShown && !isMostrado ? (
-                    <MyModal
-                        closeModal={closeModal}
-                        onKeyDown={onKeyDown}
-                        addClientLog={addClientLog}
-                        modalReturn={modalReturn}
-                        valor={valor}
-                        // onClickOutside={onClickOutside}
-                    />
-                ) : (null)}
+            {isMostrado ? (
+            <button className="btn btn-lg btn-danger center modal-button"  onClick={showModal}> {triggerText} </button>) : (null)}                
 
 
-                {isResult && !isShown && !isMostrado ? (                    
-                    <div className='result-div'>
-                        {console.log(user)}
-                        <div className='chart-div'>
-                            <Chart height={400} padding="auto" data={addResposta} autoFit>
-                                <Interval
-                                    adjust={[
-                                        {
-                                            type: 'dodge',
-                                            marginRatio: 1,
-                                        },
-                                    ]}
-                                    color="name"
-                                    position="texto*valor"
-                                />
-                                <Coord type="polar"/>
-                                <Tooltip shared />
-                            </Chart>
-                        </div>
-                        <button className='playAgain-button' onClick={deNovoOnClick}>Reiniciar Avaliação</button>
+             
+            {isShown && !isMostrado ? (
+                <MyModal
+                    closeModal={closeModal}
+                    onKeyDown={onKeyDown}
+                    addClientLog={addClientLog}
+                    modalReturn={modalReturn}
+                    valor={valor}
+                    // onClickOutside={onClickOutside}
+                />
+            ) : (null)}
+
+
+            {isResult && !isShown && !isMostrado ? (                    
+                <div className='result-div'>
+                    {console.log(user)}
+                    <div className='chart-div'>
+                        <Chart height={400} padding="auto" data={addResposta} autoFit>
+                            <Interval
+                                adjust={[
+                                    {
+                                        type: 'dodge',
+                                        marginRatio: 1,
+                                    },
+                                ]}
+                                color="#2F2462"
+                                position="texto*valor"
+                            />
+                            <Coordinate
+                                type="polar"
+                            />
+                            <Tooltip shared visible={false} />
+                            <Axis 
+                                name="texto" 
+                                visible={true}
+                                label={label}
+                                grid={null}
+                            />
+                            <Axis 
+                                name="valor" 
+                                visible={true}
+                                label={labelii}
+                                grid={gridii}
+                            />
+                        </Chart>
                     </div>
-                ):(null)}
-            </React.Fragment>
-        );
+                    <button className='playAgain-button' onClick={deNovoOnClick}>Reiniciar Avaliação</button>
+                </div>
+            ):(null)}
+        </React.Fragment>
+    );
     
 }
 
