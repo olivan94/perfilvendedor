@@ -41,7 +41,7 @@ const Container =({
 
     function onKeyDown(Event) {
         if (Event.keyCode === 27) {
-          closeModal();
+            modalReturn();
         }
     };
 
